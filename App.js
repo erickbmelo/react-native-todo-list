@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import Header from './components/Header';
 
 export default function App() {
   return (
@@ -8,7 +9,7 @@ export default function App() {
       <SafeAreaProvider>
         <SafeAreaView style={s.app}>
           <View style={s.header}>
-            <Text>Header</Text>
+            <Header />
           </View>
           <View style={s.body}>
             <Text>Body</Text>
@@ -25,7 +26,8 @@ export default function App() {
 const s = StyleSheet.create({
   app: {
     flex: 1,
-    backgroundColor: "#F9F9F9"
+    backgroundColor: "#F9F9F9",
+    padding: 15
   },
   header: {
     flex: 1,
