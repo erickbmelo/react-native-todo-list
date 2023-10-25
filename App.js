@@ -2,6 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import Header from './components/Header';
+import CardTodo from './components/CardTodo';
+
+const TODO_LIST = [
+  { id: 1, title: "Walk the dog", isCompleted: true },
+  { id: 2, title: "Go to the dentist", isCompleted: false },
+  { id: 3, title: "Learn React Native", isCompleted: false },
+]
 
 export default function App() {
   return (
@@ -12,7 +19,7 @@ export default function App() {
             <Header />
           </View>
           <View style={s.body}>
-            <Text>Body</Text>
+            <CardTodo todo={TODO_LIST[0]}/>
           </View>
         </SafeAreaView>
       </SafeAreaProvider>
