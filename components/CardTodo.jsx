@@ -4,7 +4,7 @@ import checkImg from '../assets/check.png'
 
 export default function CardTodo(props) {
     return (
-        <TouchableOpacity style={s.card}>
+        <TouchableOpacity onPress={() => props.onPress(props.todo)} style={s.card}>
             <Text style={[props.todo.title, props.todo.isCompleted && {textDecorationLine: "line-through"}]}>
                 {props.todo.title}
             </Text>

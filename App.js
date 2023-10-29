@@ -22,11 +22,22 @@ export default function App() {
   function renderTodoList(){
     return todoList.map((todo) => (
       <View key={todo.id} style={s.cardItem}>
-        <CardTodo todo={todo} />
+        <CardTodo onPress={updateTodo} todo={todo} />
       </View>
       )
     )
   }
+
+  function updateTodo(todo){
+    const todoAtualizado = {
+      ...todo, isCompleted: !todo.isCompleted
+    }
+    const updatedTodoList = [...todoList, ]
+    const indiceAAtualizar = updatedTodoList.findIndex(t => t.id === todoAtualizado.id)
+    updatedTodoList[indiceAAtualizar] = todoAtualizado
+    setTodoList(updatedTodoList)
+  }
+
   return (
     <>
       <SafeAreaProvider>
