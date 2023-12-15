@@ -1,6 +1,14 @@
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 
 export default function TabBottomMenu(props){
+    const countByStatus = props.todoList.reduce((acc, todo) => {
+        todo.isCompleted ? acc.done++ : acc.inProgress++;
+        return acc;
+    }, {
+        all: props.todoList.length,
+        inProgress: 0,
+        done: 0,
+    });
     function getTextStyle(tabName){
         return {
             fontWeight: "bold",
@@ -10,13 +18,13 @@ export default function TabBottomMenu(props){
     return (
         <View style={s.root}>
             <TouchableOpacity onPress={() => props.onPress("all")}>
-                <Text style={getTextStyle("all")}>All</Text>
+                <Text style={getTextStyle("all")}>All ({countByStatus.all})</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => props.onPress("inProgress")}>
-                <Text style={getTextStyle("inProgress")}>In progress</Text>
+                <Text style={getTextStyle("inProgress")}>In progress ({countByStatus.inProgress})</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => props.onPress("done")}>
-                <Text style={getTextStyle("done")}>Done</Text>
+                <Text style={getTextStyle("done")}>Done ({countByStatus.done})</Text>
             </TouchableOpacity>
         </View>
     )
