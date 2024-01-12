@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Alert } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import Header from './components/Header';
 import CardTodo from './components/CardTodo';
@@ -33,10 +33,23 @@ export default function App() {
     }
   }
 
+  function deleteTodo(todoToDelete){
+    Alert.alert("Excluir todo", "Você tem certeza que deseja excluir o ToDo?",
+      [
+        {"text": "Excluir",
+        style: "destructive",
+        onPress: () => {
+          setTodoList(todoList.filter((t) => t.id !== todoToDelete.id))
+        }},
+        {"text": "Cancelar", style: "cancel"},
+      ]
+    )
+  }
+
   function renderTodoList(){
     return getFilteredList().map((todo) => (
       <View key={todo.id} style={s.cardItem}>
-        <CardTodo onPress={updateTodo} todo={todo} />
+        <CardTodo onLongPress={deleteTodo} onPress={updateTodo} todo={todo} />
       </View>
       )
     )
